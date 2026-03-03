@@ -1,0 +1,9 @@
+{
+	"name": "mission100adebatch12adf19",
+	"location": "westus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "65c33966-fbbc-4fea-81e4-5d77ffc5255e",
+		"tenantId": "4e95e7d5-a5ef-4dc1-9fb3-759be1f96363"
+	}
+}

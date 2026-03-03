@@ -1,0 +1,72 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Customer_SQL_DB_DS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_CSV_Generic_With_FileName_DS",
+						"type": "DatasetReference",
+						"parameters": {
+							"folderNameParameter": {
+								"value": "Customer/@{formatDateTime(utcNow(), 'dd-MM-yyyy')}/@{formatDateTime(utcNow(), 'hh')}/@{formatDateTime(utcNow(), 'mm')}/@{formatDateTime(utcNow(), 'ss ')}",
+								"type": "Expression"
+							},
+							"fileName": {
+								"value": "Customer_@{formatDateTime(utcNow(), 'dd-MM-yyyy')}_@{formatDateTime(utcNow(), 'hh-mm-ss')}.csv ",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-02-16T11:59:01Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

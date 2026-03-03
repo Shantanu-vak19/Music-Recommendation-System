@@ -1,0 +1,19 @@
+{
+	"name": "MetadataDrivenCopyTask_6p0_ControlDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_DB_LS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MetadataDrivenCopyTask_6p0_20260223"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "ControlTable_Batch12"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
